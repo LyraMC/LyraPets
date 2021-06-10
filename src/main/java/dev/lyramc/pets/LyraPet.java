@@ -1,6 +1,5 @@
 package dev.lyramc.pets;
 
-import dev.lyramc.hub.LyraHub;
 import net.minecraft.server.v1_8_R3.EntityLiving;
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
@@ -9,6 +8,7 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class LyraPet<E extends EntityLiving> {
         LyraPetsUtils.pets.add(this);
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> invincible() {
+    public LyraPet<E> invincible() {
         LyraPetsUtils.setInvulnerable(relativeNMSClass);
         LyraPetsUtils.NoAI(relativeNMSClass);
         return this;
@@ -44,38 +44,38 @@ public class LyraPet<E extends EntityLiving> {
         LyraPetsUtils.showOrHidePlayerTo(relativeNMSClass, visibilityOfPlayers, true, players);
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> setName(final String name) {
+    public LyraPet<E> setName(final String name) {
         this.relativeBukkitEntity.setCustomNameVisible(true);
         this.relativeBukkitEntity.setCustomName(name);
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> noName() {
+    public LyraPet<E> noName() {
         this.relativeBukkitEntity.setCustomNameVisible(false);
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> setMetaData(String metaData, Object relative) {
-        this.relativeBukkitEntity.setMetadata(metaData, new FixedMetadataValue(LyraHub.getInstance(), relative));
+    public LyraPet<E> setMetaData(String metaData, Object relative, JavaPlugin plugin) {
+        this.relativeBukkitEntity.setMetadata(metaData, new FixedMetadataValue(plugin, relative));
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> playEffect(EntityEffect effect) {
+    public LyraPet<E> playEffect(EntityEffect effect) {
         this.relativeBukkitEntity.playEffect(effect);
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> invisible(boolean flag) {
+    public LyraPet<E> invisible(boolean flag) {
         this.relativeNMSClass.setInvisible(flag);
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> sneaking(boolean flag) {
+    public LyraPet<E> sneaking(boolean flag) {
         this.relativeNMSClass.setSneaking(flag);
         return this;
     }
 
-    public dev.lyramc.hub.api.lyra.entities.LyraPet<E> sprinting(boolean flag) {
+    public LyraPet<E> sprinting(boolean flag) {
         this.relativeNMSClass.setSprinting(flag);
         return this;
     }
